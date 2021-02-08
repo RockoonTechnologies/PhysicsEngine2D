@@ -4,22 +4,23 @@
 #include <iostream>
 #include <string>
 #include "Rigidbody.h"
+#include <chrono>
 
 using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
-
-    Vector2 vec1(1, 2);
-    Vector2 vec2(5, 5);
-    vec2 += vec1;
+    
 
     Rigidbody rb(2, Vector2(0, 0));
     
     for (int x = 0; x < 20000000000; x++) {
+        auto start = std::chrono::high_resolution_clock::now();
         rb.Update();
         cout << to_string(rb.position.x) + "," + to_string(rb.position.y) + "\n";
+        auto finish = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsed = finish - start;
+        cout << elapsed.count() << "\n";
     }
 }
 

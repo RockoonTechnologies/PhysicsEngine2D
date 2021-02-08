@@ -43,3 +43,10 @@ double Vector2::direction() {
 	return pow(tan(this->x / this->y), -1);
 }
 
+Vector2 Vector2::normal() {
+
+	double mag = magnitude();
+	Vector2 vec(this->x / mag, this->y / mag);
+	return vec;
+}
+
