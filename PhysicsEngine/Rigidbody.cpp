@@ -31,5 +31,12 @@ void Rigidbody::Update() {
     this->velocity.y += this->acceleration.y * this->dt;
 
 
+    this->forces.x = 0;
+    this->forces.y = 0;
+
     
+}
+
+void Rigidbody::addForces(Vector2 toAdd) {
+    this->forces += toAdd;
 }

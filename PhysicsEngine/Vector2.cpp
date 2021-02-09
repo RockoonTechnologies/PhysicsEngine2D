@@ -1,5 +1,10 @@
 #include "Vector2.h"
 #include <math.h>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 Vector2::Vector2(double m_X, double m_Y) {
 	this->x = m_X;
 	this->y = m_Y;
@@ -48,5 +53,15 @@ Vector2 Vector2::normal() {
 	double mag = magnitude();
 	Vector2 vec(this->x / mag, this->y / mag);
 	return vec;
+}
+
+void Vector2::invert() {
+	this->x = -this->x;
+	this->y = -this->y;
+}
+
+void Vector2::print() {
+	cout << "X: " << this->x  << " | " << "Y: " << this->y << "\n";
+
 }
 

@@ -18,4 +18,5 @@ public:
 	~Rigidbody();
 
 	void Update();
+	void addForces(Vector2 toAdd);
 };

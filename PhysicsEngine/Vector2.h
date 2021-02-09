@@ -1,4 +1,7 @@
 #pragma once
+#include <math.h>
+#include <iostream>
+#include <string>
 
 class Vector2 {
 public:
@@ -16,4 +19,7 @@ public:
 	double magnitude();
 	double direction();
 	Vector2 normal();
+	void invert();
+	
+	void print();
 };
