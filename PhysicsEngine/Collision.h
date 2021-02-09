@@ -3,15 +3,21 @@
 #include "Rigidbody.h"
 #include "Vector2.h"
 
-void Update();
+
+
+void CollisionUpdate();
+
+//vector<RectCollider*> getPotentialCollisions();
+
 
 class RectCollider {
 public:
 	int id;
+	bool inCollision;
 	Vector2 dimensions;
 	Vector2 position;
 	Rigidbody rb;
-	RectCollider(Vector2 dim=(1,1));
+	RectCollider(Vector2 dim=(100,100));
 	~RectCollider();
 
 	void Attach(Rigidbody toAttach);

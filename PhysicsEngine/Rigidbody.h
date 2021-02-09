@@ -14,7 +14,7 @@ public:
 	Vector2 position;
 
 
-	Rigidbody(double mass, Vector2 pos);
+	Rigidbody(double mass=1, Vector2 pos=(0,0));
 	~Rigidbody();
 
 	void Update();
