@@ -9,6 +9,8 @@ Rigidbody::Rigidbody(double mass, Vector2 pos) {
 
 }
 
+Rigidbody::Rigidbody() {}
+
 Rigidbody::~Rigidbody() {}
 
 void Rigidbody::Update() {

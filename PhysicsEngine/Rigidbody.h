@@ -15,6 +15,7 @@ public:
 
 
 	Rigidbody(double mass=1, Vector2 pos=(0,0));
+	Rigidbody();
 	~Rigidbody();
 
 	void Update();

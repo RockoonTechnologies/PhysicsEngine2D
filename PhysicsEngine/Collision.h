@@ -16,11 +16,12 @@ public:
 	bool inCollision;
 	Vector2 dimensions;
 	Vector2 position;
-	Rigidbody rb;
+	Rigidbody* rb;
 	RectCollider(Vector2 dim=(100,100));
+	
 	~RectCollider();
 
-	void Attach(Rigidbody toAttach);
+	void Attach(Rigidbody& toAttach);
 	void Update();
 
 
