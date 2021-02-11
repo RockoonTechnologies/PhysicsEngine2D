@@ -12,19 +12,21 @@ int main()
 {
     
 
-    Rigidbody rb1(2, Vector2(0, 0));
+    Rigidbody rb1(1, Vector2(0, 2));
     Rigidbody rb2(1, Vector2(0, 0));
+
+    rb2.gravity = 0;
 
     RectCollider coll1(Vector2(1, 1));
     RectCollider coll2(Vector2(1, 1));
 
-    coll1.Attach(rb1);
-    coll2.Attach(rb2);
+    coll1.Attach(&rb1);
+    coll2.Attach(&rb2);
 
 
 
     //rb1.addForces(Vector2(10, 0));
-    for (int x = 0; x < 2000000; x++) {
+    for (int x = 0; x < 200; x++) {
        
         rb1.Update();
         rb2.Update();
@@ -33,10 +35,16 @@ int main()
 
         if (coll1.inCollision) {
             cout << "Colliding!" << "\n";
+            exit(0);
+
         }
         else {
             cout << "Nope!" << "\n";
         }
+        cout << "Body 1: \n";
+        coll1.position.print();
+        cout << "Body 2: \n";
+        coll2.position.print();
 
        
        

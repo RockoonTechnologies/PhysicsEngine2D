@@ -42,3 +42,4 @@ void Rigidbody::Update() {
 void Rigidbody::addForces(Vector2 toAdd) {
     this->forces += toAdd;
 }
+
