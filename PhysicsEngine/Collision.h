@@ -14,7 +14,7 @@ class RectCollider {
 public:
 	int id;
 	bool inCollision;
-	Vector2 dimensions;
+	Vector2 dimensions; 
 	Vector2 position;
 	Rigidbody* rb;
 	RectCollider(Vector2 dim = (100, 100));
