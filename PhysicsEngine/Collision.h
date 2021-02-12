@@ -7,7 +7,7 @@
 
 void CollisionUpdate();
 
-//vector<RectCollider*> getPotentialCollisions();
+vector<RectCollider*> getPotentialCollisions();
 
 
 class RectCollider {

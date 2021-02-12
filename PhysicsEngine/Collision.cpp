@@ -1,4 +1,4 @@
-
+2
 #include "Collision.h"
 #include "Rigidbody.h"
 #include "Vector2.h"
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//float boundingBoxSize = 50;
+float boundingBoxSize = 150;
 
 
 vector<RectCollider*> globalList;
@@ -38,14 +38,30 @@ void CollisionUpdate() {
 	}
 }
 
-/*
+
 vector<RectCollider*> getPotentialCollisions() {
 	vector<RectCollider*> potentialCollisions;
+	for (int x = 0; x < globalList.size(); x++) {
+		RectCollider* obj1 = globalList[x];
+		for (int x = 0; x < globalList.size(); x++) {
+			RectCollider* obj2 = globalList[x];
 
+			if (obj1->id == obj2->id) {
+				continue;
+			}
+
+			if (obj1->position.x < obj2->position.x + obj2->dimensions.x &&
+				obj1->position.x + obj2->dimensions.x > obj2->position.x)
+			{
+				potentialCollisions.push_back(obj2);
+			}
+
+		}
+	}
 
 
 }
-*/
+
 
 RectCollider::RectCollider(Vector2 dim) {
 	this->dimensions = dim;
