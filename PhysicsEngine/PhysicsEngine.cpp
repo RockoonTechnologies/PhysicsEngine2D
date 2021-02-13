@@ -13,7 +13,7 @@ int main()
     
 
     Rigidbody rb1(1, Vector2(0, 2));
-    Rigidbody rb2(1, Vector2(0, 0));
+    Rigidbody rb2(4, Vector2(0, 0));
 
     rb2.gravity = 0;
 
@@ -35,8 +35,6 @@ int main()
 
         if (coll1.inCollision) {
             cout << "Colliding!" << "\n";
-            exit(0);
-
         }
         else {
             cout << "Nope!" << "\n";
