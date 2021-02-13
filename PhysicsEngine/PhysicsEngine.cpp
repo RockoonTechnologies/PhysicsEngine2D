@@ -41,8 +41,10 @@ int main()
         }
         cout << "Body 1: \n";
         coll1.position.print();
+        rb1.velocity.print();
         cout << "Body 2: \n";
         coll2.position.print();
+        rb2.velocity.print();
 
        
        
