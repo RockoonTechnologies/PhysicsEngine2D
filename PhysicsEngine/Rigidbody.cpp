@@ -19,6 +19,7 @@ void Rigidbody::Update() {
     this->time += this->dt;
 
 
+
     this->forces.y = gravity;
 
     this->acceleration.x = this->forces.x / this->mass;
@@ -31,6 +32,13 @@ void Rigidbody::Update() {
 
     this->velocity.x += this->acceleration.x * this->dt;
     this->velocity.y += this->acceleration.y * this->dt;
+
+
+    this->KE = .5 * this->mass * (this->velocity.x * this->velocity.x )+ (this->velocity.y * this->velocity.y);
+
+    this->area = this->dimensions.x * this->dimensions.y;
+    this->density = this->mass / this->area;
+
 
 
     this->forces.x = 0;
