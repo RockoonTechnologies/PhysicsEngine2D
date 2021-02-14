@@ -13,6 +13,9 @@ bool elasticCollisions = true;
 
 vector<RectCollider*> globalList;
 
+
+
+
 void CollisionUpdate() {
 	for (int x = 0; x < globalList.size(); x++) {
 		globalList[x]->Update();
@@ -21,10 +24,10 @@ void CollisionUpdate() {
 
 	for (int x = 0; x < globalList.size(); x++) {
 		RectCollider* obj1 = globalList[x];
-		for (int x = 0; x < globalList.size(); x++) {
-			RectCollider* obj2 = globalList[x];
+		for (int y = 0; y < globalList.size(); y++) {
+			RectCollider* obj2 = globalList[y];
 
-			
+
 			if (obj1->id == obj2->id) {
 				continue;
 			}
@@ -40,23 +43,13 @@ void CollisionUpdate() {
 				Vector2 obj2VelocityBuffer(obj2->rb->velocity.x, obj2->rb->velocity.y);
 
 				if (elasticCollisions) {
-					if (obj1->rb->mass == obj2->rb->mass) {
-						obj1->rb->velocity.x = obj2->rb->velocity.x;
-						obj2->rb->velocity.x = obj1VelocityBuffer.x;
 
+					//obj1->rb->velocity.x = (((obj1->rb->mass - obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.x) + (((2 * obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj2VelocityBuffer.x);
+					obj2->rb->velocity.x = (((2 * obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.x) + (((obj2->rb->mass - obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass))) * obj2VelocityBuffer.x;
 
-						obj1->rb->velocity.y = obj2->rb->velocity.y;
-						obj2->rb->velocity.y = obj1VelocityBuffer.y;
-					}
-					else {
+					//obj1->rb->velocity.y = (((obj1->rb->mass - obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.y) + (((2 * obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj2VelocityBuffer.y);
+					obj2->rb->velocity.y = (((2 * obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.y) + (((obj2->rb->mass - obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass))) * obj2VelocityBuffer.y;
 
-						
-						//obj1->rb->velocity.x = (((obj1->rb->mass - obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.x) + (((2 * obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj2VelocityBuffer.x);
-						obj2->rb->velocity.x = (((2 * obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.x) + (((obj2->rb->mass - obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass))) * obj2VelocityBuffer.x;
-
-						//obj1->rb->velocity.y = (((obj1->rb->mass - obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.y) + (((2 * obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj2VelocityBuffer.y);
-						obj2->rb->velocity.y = (((2 * obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.y) + (((obj2->rb->mass - obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass))) * obj2VelocityBuffer.y;
-					}
 				}
 
 
@@ -65,6 +58,7 @@ void CollisionUpdate() {
 		}
 	}
 }
+
 
 /*
 vector<RectCollider*> getPotentialCollisions() {

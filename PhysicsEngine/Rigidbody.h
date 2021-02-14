@@ -3,6 +3,9 @@
 
 class Rigidbody {
 public:
+
+	
+
 	double time;
 	double dt = .01;
 	double gravity = -9.8;
