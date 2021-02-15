@@ -17,16 +17,15 @@ SpringJoint::~SpringJoint() {}
 
 
 void SpringJoint::Update() {
-
+	std::cout << this->col->inCollision + "\n";
 	if (!this->col->inCollision) {
 		Vector2 forcesToAdd(0, 0);
-
 
 		forcesToAdd.x = -(this->Stiffness * (this->rb2->position.x - this->rb1->position.x));
 		forcesToAdd.y = -(this->Stiffness * (this->rb2->position.y - this->rb1->position.y));
 		this->rb2->addForces(forcesToAdd);
 	}
 	else {
-		std::cout << "A";
+		std::cout << "HEY BITCH";
 	}
 }
