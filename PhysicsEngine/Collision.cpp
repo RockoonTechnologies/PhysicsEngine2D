@@ -12,7 +12,7 @@ using namespace std;
 float boundingBoxSize = 150;
 
 bool elasticCollisions = false;
-double Cr = 0;
+double Cr = .3;
 
 
 vector<RectCollider*> globalList;
@@ -38,12 +38,17 @@ void CollisionUpdate() {
 				continue;
 			}
 
+			
+
 			if (obj1->position.x < obj2->position.x + obj2->dimensions.x &&
 				obj1->position.x + obj2->dimensions.x > obj2->position.x &&
 				obj1->position.y < obj2->position.y + obj2->dimensions.y &&
 				obj1->position.y + obj1->dimensions.y > obj2->position.y)
 			{
+				obj1->inCollision = true;
 				obj2->inCollision = true;
+
+				
 
 				Vector2 obj1VelocityBuffer(obj1->rb->velocity.x, obj1->rb->velocity.y);
 				Vector2 obj2VelocityBuffer(obj2->rb->velocity.x, obj2->rb->velocity.y);
@@ -59,10 +64,13 @@ void CollisionUpdate() {
 				}
 				else {
 
-					obj1->rb->velocity.x;
+					
 
+					obj1->rb->velocity.x = (Cr * obj2->rb->mass * (obj2VelocityBuffer.x - obj1VelocityBuffer.x) + obj1->rb->mass * obj1VelocityBuffer.x + obj2->rb->mass * obj2VelocityBuffer.x) / obj1->rb->mass * obj2->rb->mass;
+					obj2->rb->velocity.x = (Cr * obj1->rb->mass * (obj1VelocityBuffer.x - obj2VelocityBuffer.x) + obj1->rb->mass * obj1VelocityBuffer.x + obj2->rb->mass * obj2VelocityBuffer.x) / obj1->rb->mass * obj2->rb->mass;
 
-
+					obj1->rb->velocity.y = (Cr * obj2->rb->mass * (obj2VelocityBuffer.y - obj1VelocityBuffer.y) + obj1->rb->mass * obj1VelocityBuffer.y + obj2->rb->mass * obj2VelocityBuffer.y) / obj1->rb->mass * obj2->rb->mass;
+					obj2->rb->velocity.y = (Cr * obj1->rb->mass * (obj1VelocityBuffer.y - obj2VelocityBuffer.y) + obj1->rb->mass * obj1VelocityBuffer.y + obj2->rb->mass * obj2VelocityBuffer.y) / obj1->rb->mass * obj2->rb->mass;
 				}
 
 
@@ -103,14 +111,14 @@ vector<RectCollider*> getPotentialCollisions() {
 RectCollider::RectCollider(Vector2 dim) {
 	this->dimensions = dim;
 	this->id = globalList.size();
-	
+	globalList.push_back(this);
 }
 
 RectCollider::~RectCollider() {}
 
 void RectCollider::Attach(Rigidbody* toAttach) {
 	rb = toAttach;
-	globalList.push_back(this);
+	
 }
 
 void RectCollider::Update() {
