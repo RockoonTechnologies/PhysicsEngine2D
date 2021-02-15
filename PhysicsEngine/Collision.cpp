@@ -4,14 +4,19 @@
 #include "Vector2.h"
 #include <vector>
 
+
+
+
 using namespace std;
 
 float boundingBoxSize = 150;
 
-bool elasticCollisions = true;
+bool elasticCollisions = false;
+double Cr = 0;
 
 
 vector<RectCollider*> globalList;
+
 
 
 
@@ -50,6 +55,13 @@ void CollisionUpdate() {
 
 					obj1->rb->velocity.y = (((obj1->rb->mass - obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.y) + (((2 * obj2->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj2VelocityBuffer.y);
 					obj2->rb->velocity.y = (((2 * obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass)) * obj1VelocityBuffer.y) + (((obj2->rb->mass - obj1->rb->mass) / (obj1->rb->mass + obj2->rb->mass))) * obj2VelocityBuffer.y;
+
+				}
+				else {
+
+					obj1->rb->velocity.x;
+
+
 
 				}
 
@@ -91,13 +103,14 @@ vector<RectCollider*> getPotentialCollisions() {
 RectCollider::RectCollider(Vector2 dim) {
 	this->dimensions = dim;
 	this->id = globalList.size();
-	globalList.push_back(this);
+	
 }
 
 RectCollider::~RectCollider() {}
 
 void RectCollider::Attach(Rigidbody* toAttach) {
 	rb = toAttach;
+	globalList.push_back(this);
 }
 
 void RectCollider::Update() {

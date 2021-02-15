@@ -10,6 +10,8 @@ public:
 	double dt = .01;
 	double gravity = -9.8;
 
+	bool locked = false;
+
 	double mass = 1;
 	double KE;
 	double area;

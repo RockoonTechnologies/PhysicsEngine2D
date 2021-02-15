@@ -27,8 +27,10 @@ void Rigidbody::Update() {
 
 
     //update position
-    this->position.x += this->velocity.x * this->dt + .5 * this->acceleration.x * (this->dt * this->dt);
-    this->position.y += this->velocity.y * this->dt + .5 * this->acceleration.y * (this->dt * this->dt);
+    if (!locked) {
+        this->position.x += this->velocity.x * this->dt + .5 * this->acceleration.x * (this->dt * this->dt);
+        this->position.y += this->velocity.y * this->dt + .5 * this->acceleration.y * (this->dt * this->dt);
+    }
 
     this->velocity.x += this->acceleration.x * this->dt;
     this->velocity.y += this->acceleration.y * this->dt;
