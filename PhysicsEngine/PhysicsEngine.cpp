@@ -12,7 +12,8 @@
 
 using namespace std;
 
-vector<Rigidbody> rbList;
+Rigidbody body1(1, Vector2(0, 0));
+Rigidbody body2(1, Vector2(0, 5));
 
 int main()
 {

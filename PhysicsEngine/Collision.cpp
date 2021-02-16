@@ -11,8 +11,8 @@ using namespace std;
 
 float boundingBoxSize = 150;
 
-bool elasticCollisions = true;
-double Cr = .5;
+bool elasticCollisions = false;
+double Cr = .4;
 
 
 vector<RectCollider*> globalList;
@@ -64,7 +64,20 @@ void CollisionUpdate() {
 				}
 				else {
 
-					
+					Vector2 relativeVelocity(obj2->rb->velocity.x - obj1->rb->velocity.x, obj2->rb->velocity.y - obj1->rb->velocity.y);
+					Vector2 relativePosition(obj2->rb->position.x - obj1->rb->position.x, obj2->rb->position.y - obj1->rb->position.y);
+					Vector2 normalRelativePosition = relativePosition.normal();
+
+					//make a function for this soooooooon
+					double dot;
+
+					dot = (normalRelativePosition.x * relativeVelocity.x) + (normalRelativePosition.y * relativeVelocity.y);
+
+					cout << dot << "- val \n";
+
+					if (dot > 0) {
+						return;
+					}
 
 					obj1->rb->velocity.x = (Cr * obj2->rb->mass * (obj2VelocityBuffer.x - obj1VelocityBuffer.x) + obj1->rb->mass * obj1VelocityBuffer.x + obj2->rb->mass * obj2VelocityBuffer.x) / obj1->rb->mass * obj2->rb->mass;
 					obj2->rb->velocity.x = (Cr * obj1->rb->mass * (obj1VelocityBuffer.x - obj2VelocityBuffer.x) + obj1->rb->mass * obj1VelocityBuffer.x + obj2->rb->mass * obj2VelocityBuffer.x) / obj1->rb->mass * obj2->rb->mass;
