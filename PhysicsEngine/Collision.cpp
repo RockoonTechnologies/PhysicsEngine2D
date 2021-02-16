@@ -11,8 +11,8 @@ using namespace std;
 
 float boundingBoxSize = 150;
 
-bool elasticCollisions = false;
-double Cr = .3;
+bool elasticCollisions = true;
+double Cr = .5;
 
 
 vector<RectCollider*> globalList;
