@@ -12,7 +12,7 @@ using namespace std;
 float boundingBoxSize = 150;
 
 bool elasticCollisions = false;
-double Cr = .4;
+double Cr = 0.1;
 
 
 vector<RectCollider*> globalList;
@@ -68,6 +68,8 @@ void CollisionUpdate() {
 					Vector2 relativePosition(obj2->rb->position.x - obj1->rb->position.x, obj2->rb->position.y - obj1->rb->position.y);
 					Vector2 normalRelativePosition = relativePosition.normal();
 
+					
+
 					//make a function for this soooooooon
 					double dot;
 
@@ -79,11 +81,21 @@ void CollisionUpdate() {
 						return;
 					}
 
-					obj1->rb->velocity.x = (Cr * obj2->rb->mass * (obj2VelocityBuffer.x - obj1VelocityBuffer.x) + obj1->rb->mass * obj1VelocityBuffer.x + obj2->rb->mass * obj2VelocityBuffer.x) / obj1->rb->mass * obj2->rb->mass;
-					obj2->rb->velocity.x = (Cr * obj1->rb->mass * (obj1VelocityBuffer.x - obj2VelocityBuffer.x) + obj1->rb->mass * obj1VelocityBuffer.x + obj2->rb->mass * obj2VelocityBuffer.x) / obj1->rb->mass * obj2->rb->mass;
+					obj1->rb->velocity.x -= (Cr * obj2->rb->mass * (obj2VelocityBuffer.x - obj1VelocityBuffer.x) + obj1->rb->mass * obj1VelocityBuffer.x + obj2->rb->mass * obj2VelocityBuffer.x) / obj1->rb->mass * obj2->rb->mass;
+					obj2->rb->velocity.x += (Cr * obj1->rb->mass * (obj1VelocityBuffer.x - obj2VelocityBuffer.x) + obj1->rb->mass * obj1VelocityBuffer.x + obj2->rb->mass * obj2VelocityBuffer.x) / obj1->rb->mass * obj2->rb->mass;
 
-					obj1->rb->velocity.y = (Cr * obj2->rb->mass * (obj2VelocityBuffer.y - obj1VelocityBuffer.y) + obj1->rb->mass * obj1VelocityBuffer.y + obj2->rb->mass * obj2VelocityBuffer.y) / obj1->rb->mass * obj2->rb->mass;
-					obj2->rb->velocity.y = (Cr * obj1->rb->mass * (obj1VelocityBuffer.y - obj2VelocityBuffer.y) + obj1->rb->mass * obj1VelocityBuffer.y + obj2->rb->mass * obj2VelocityBuffer.y) / obj1->rb->mass * obj2->rb->mass;
+					obj1->rb->velocity.y -= (Cr * obj2->rb->mass * (obj2VelocityBuffer.y - obj1VelocityBuffer.y) + obj1->rb->mass * obj1VelocityBuffer.y + obj2->rb->mass * obj2VelocityBuffer.y) / obj1->rb->mass * obj2->rb->mass;
+					obj2->rb->velocity.y += (Cr * obj1->rb->mass * (obj1VelocityBuffer.y - obj2VelocityBuffer.y) + obj1->rb->mass * obj1VelocityBuffer.y + obj2->rb->mass * obj2VelocityBuffer.y) / obj1->rb->mass * obj2->rb->mass;
+
+					/*
+					if (relativePosition.x > relativePosition.y) {
+						obj2->rb->position.x = obj1->position.x + obj2->dimensions.x;
+					}
+					else {
+						obj2->rb->position.y = obj1->position.y + obj2->dimensions.y;
+					}*/
+
+					obj2->position = normalRelativePosition;
 				}
 
 
