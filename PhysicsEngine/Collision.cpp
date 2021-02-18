@@ -87,15 +87,10 @@ void CollisionUpdate() {
 					obj1->rb->velocity.y -= (Cr * obj2->rb->mass * (obj2VelocityBuffer.y - obj1VelocityBuffer.y) + obj1->rb->mass * obj1VelocityBuffer.y + obj2->rb->mass * obj2VelocityBuffer.y) / obj1->rb->mass * obj2->rb->mass;
 					obj2->rb->velocity.y += (Cr * obj1->rb->mass * (obj1VelocityBuffer.y - obj2VelocityBuffer.y) + obj1->rb->mass * obj1VelocityBuffer.y + obj2->rb->mass * obj2VelocityBuffer.y) / obj1->rb->mass * obj2->rb->mass;
 
-					/*
-					if (relativePosition.x > relativePosition.y) {
-						obj2->rb->position.x = obj1->position.x + obj2->dimensions.x;
-					}
-					else {
-						obj2->rb->position.y = obj1->position.y + obj2->dimensions.y;
-					}*/
+					
 
-					obj2->position = normalRelativePosition;
+					obj2->position.x = normalRelativePosition.x;
+					obj2->position.y = normalRelativePosition.y;
 				}
 
 
