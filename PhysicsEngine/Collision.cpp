@@ -89,6 +89,7 @@ void CollisionUpdate() {
 
 					
 
+
 					obj2->position.x = normalRelativePosition.x;
 					obj2->position.y = normalRelativePosition.y;
 				}

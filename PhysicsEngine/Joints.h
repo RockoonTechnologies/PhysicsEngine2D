@@ -20,3 +20,20 @@ public:
 	void Update();
 
 };
+
+
+class FixedJoint {
+public:
+
+	Rigidbody* rb1;
+	Rigidbody* rb2;
+
+	
+	Vector2 offset = (1, 1);
+
+	FixedJoint(Rigidbody* r, Rigidbody* rs1, Vector2 off);
+	~FixedJoint();
+
+	void Update();
+
+};

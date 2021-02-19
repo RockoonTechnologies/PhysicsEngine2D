@@ -29,3 +29,19 @@ void SpringJoint::Update() {
 		std::cout << "HEY BITCH";
 	}
 }
+
+
+FixedJoint::FixedJoint(Rigidbody* r, Rigidbody* rs1, Vector2 off) {
+	this->rb1 = r;
+	this->rb2 = rs1;
+	this->offset = off;
+}
+
+FixedJoint::~FixedJoint() {}
+
+void FixedJoint::Update() {
+
+	this->rb1->position.x = this->rb2->position.x + this->offset.x;
+	this->rb1->position.y = this->rb2->position.y + this->offset.y;
+
+}
