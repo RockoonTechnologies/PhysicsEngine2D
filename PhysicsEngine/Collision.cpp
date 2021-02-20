@@ -12,7 +12,7 @@ using namespace std;
 float boundingBoxSize = 150;
 
 bool elasticCollisions = false;
-double Cr = 0.1;
+double Cr = .1;
 
 
 vector<RectCollider*> globalList;
@@ -90,8 +90,8 @@ void CollisionUpdate() {
 					
 
 
-					obj2->position.x = normalRelativePosition.x;
-					obj2->position.y = normalRelativePosition.y;
+					obj2->position.x += normalRelativePosition.x;
+					obj2->position.y += normalRelativePosition.y;
 				}
 
 
