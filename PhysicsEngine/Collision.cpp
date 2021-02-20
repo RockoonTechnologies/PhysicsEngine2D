@@ -41,7 +41,7 @@ void CollisionUpdate() {
 			
 
 			if (obj1->position.x < obj2->position.x + obj2->dimensions.x &&
-				obj1->position.x + obj2->dimensions.x > obj2->position.x &&
+				obj1->position.x + obj1->dimensions.x > obj2->position.x &&
 				obj1->position.y < obj2->position.y + obj2->dimensions.y &&
 				obj1->position.y + obj1->dimensions.y > obj2->position.y)
 			{
@@ -90,8 +90,8 @@ void CollisionUpdate() {
 					
 
 
-					obj2->position.x += normalRelativePosition.x;
-					obj2->position.y += normalRelativePosition.y;
+					//obj2->rb->position.x += normalRelativePosition.x;
+					obj2->rb->position.y += normalRelativePosition.y;
 				}
 
 
