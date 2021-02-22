@@ -5,11 +5,7 @@
 
 
 
-void CollisionUpdate();
 
-void resolveAABB(RectCollider* obj1, RectCollider* obj2);
-
-void resolveCirc(CircleCollider* obj1, CircleCollider* obj2);
 
 //vector<RectCollider*> getPotentialCollisions();
 
@@ -45,5 +41,12 @@ public:
 
 
 };
+
+
+void CollisionUpdate();
+
+void resolveAABB(RectCollider* obj1, RectCollider* obj2);
+
+void resolveCirc(CircleCollider* obj1, CircleCollider* obj2);
 
 

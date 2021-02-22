@@ -4,7 +4,7 @@
 #include <string>
 
 
-double Dot(Vector2 first, Vector2 second);
+
 
 class Vector2 {
 public:
@@ -26,3 +26,5 @@ public:
 	
 	void print();
 };
+
+double Dot(Vector2 first, Vector2 second);

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-float boundingBoxSize = 150;
+
 
 bool elasticCollisions = false;
 double Cr = .1;
@@ -17,6 +17,50 @@ double Cr = .1;
 
 vector<RectCollider*> globalRectList;
 vector<CircleCollider*> globalCircleList;
+
+
+
+RectCollider::RectCollider(Vector2 dim) {
+	this->dimensions = dim;
+	// hi future theo, dont touch this either, ul break it all- i know u have tried, fuck off - 2/13/2021
+	this->id = globalRectList.size();
+	globalRectList.push_back(this);
+}
+
+RectCollider::~RectCollider() {}
+
+void RectCollider::Attach(Rigidbody* toAttach) {
+	rb = toAttach;
+	
+}
+
+void RectCollider::Update() {
+	this->position = rb->position;
+}
+
+
+// -------------------------------------------------------------------
+
+CircleCollider::CircleCollider(double dia) {
+	this->diameter = dia;
+	this->id = globalCircleList.size();
+	globalCircleList.push_back(this);
+}
+
+CircleCollider::~CircleCollider() {}
+
+void CircleCollider::Attach(Rigidbody* toAttach) {
+	this->rb = toAttach;
+
+}
+
+void CircleCollider::Update() {
+	this->position = this->rb->position;
+}
+
+
+
+
 
 
 
@@ -33,7 +77,7 @@ void CollisionUpdate() {
 	}
 
 	for (int x = 0; x < globalRectList.size(); x++) {
-		
+
 		for (int y = x; y < globalRectList.size(); y++) {
 			RectCollider* obj1 = globalRectList[x];
 			RectCollider* obj2 = globalRectList[y];
@@ -66,9 +110,9 @@ void CollisionUpdate() {
 			}
 
 			Vector2 relativePosition(obj1->position.x - obj2->position.x, obj1->position.y - obj2->position.y);
-			
+
 			double distance = sqrt(relativePosition.x * relativePosition.x + relativePosition.y * relativePosition.y);
-			if (distance < obj1->diameter/2 + obj2->diameter / 2) {
+			if (distance < obj1->diameter / 2 + obj2->diameter / 2) {
 				resolveCirc(obj1, obj2);
 			}
 		}
@@ -98,15 +142,15 @@ void resolveAABB(RectCollider* obj1, RectCollider* obj2) {
 		Vector2 relativeVelocity(obj2->rb->velocity.x - obj1->rb->velocity.x, obj2->rb->velocity.y - obj1->rb->velocity.y);
 		Vector2 relativePosition(obj2->rb->position.x - obj1->rb->position.x, obj2->rb->position.y - obj1->rb->position.y);
 		Vector2 normalRelativePosition = relativePosition.normal();
+		
 
 
-
-		//make a function for this soooooooon
+		
 		double dot = Dot(normalRelativePosition, relativeVelocity);
 
 
 
-		//cout << dot << "- val \n";
+		cout << dot << " \n";
 
 		if (dot > 0) {
 			return;
@@ -149,13 +193,14 @@ void resolveCirc(CircleCollider* obj1, CircleCollider* obj2) {
 		Vector2 relativeVelocity(obj2->rb->velocity.x - obj1->rb->velocity.x, obj2->rb->velocity.y - obj1->rb->velocity.y);
 		Vector2 relativePosition(obj2->rb->position.x - obj1->rb->position.x, obj2->rb->position.y - obj1->rb->position.y);
 		Vector2 normalRelativePosition = relativePosition.normal();
+		
 
 
 
-		double dot = Dot(normalRelativePosition, relativeVelocity);
+		double dot = Dot(relativeVelocity, normalRelativePosition);
 
 		//cout << dot << "- val \n";
-		
+
 		if (dot > 0) {
 			return;
 		}
@@ -170,48 +215,8 @@ void resolveCirc(CircleCollider* obj1, CircleCollider* obj2) {
 
 
 		//obj2->rb->position.x += normalRelativePosition.x;
-		//obj2->rb->position.y += normalRelativePosition.y;
+		obj2->rb->position.y += normalRelativePosition.y;
 	}
 
-}
-
-
-
-RectCollider::RectCollider(Vector2 dim) {
-	this->dimensions = dim;
-	// hi future theo, dont touch this either, ul break it all- i know u have tried, fuck off - 2/13/2021
-	this->id = globalRectList.size();
-	globalRectList.push_back(this);
-}
-
-RectCollider::~RectCollider() {}
-
-void RectCollider::Attach(Rigidbody* toAttach) {
-	rb = toAttach;
-	
-}
-
-void RectCollider::Update() {
-	this->position = rb->position;
-}
-
-
-// -------------------------------------------------------------------
-
-CircleCollider::CircleCollider(double dia) {
-	this->diameter = dia;
-	this->id = globalCircleList.size();
-	globalCircleList.push_back(this);
-}
-
-CircleCollider::~CircleCollider() {}
-
-void CircleCollider::Attach(Rigidbody* toAttach) {
-	this->rb = toAttach;
-
-}
-
-void CircleCollider::Update() {
-	this->position = this->rb->position;
 }
 

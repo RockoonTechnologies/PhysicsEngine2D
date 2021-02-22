@@ -5,9 +5,6 @@
 
 using namespace std;
 
-double Dot(Vector2 first, Vector2 second) {
-	double final = (first.x * second.x) + (first.y * second.y);
-}
 
 Vector2::Vector2(double m_X, double m_Y) {
 	this->x = m_X;
@@ -67,5 +64,11 @@ void Vector2::invert() {
 void Vector2::print() {
 	cout << "X: " << this->x  << " | " << "Y: " << this->y << "\n";
 
+}
+
+
+double Dot(Vector2 first, Vector2 second) {
+	double final = (first.x * second.x) + (first.y * second.y);
+	return final;
 }
 
