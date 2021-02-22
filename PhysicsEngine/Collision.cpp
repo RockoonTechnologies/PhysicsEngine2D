@@ -154,10 +154,8 @@ void resolveCirc(CircleCollider* obj1, CircleCollider* obj2) {
 
 		double dot = Dot(normalRelativePosition, relativeVelocity);
 
-		
-
 		//cout << dot << "- val \n";
-
+		
 		if (dot > 0) {
 			return;
 		}
@@ -181,6 +179,7 @@ void resolveCirc(CircleCollider* obj1, CircleCollider* obj2) {
 
 RectCollider::RectCollider(Vector2 dim) {
 	this->dimensions = dim;
+	// hi future theo, dont touch this either, ul break it all- i know u have tried, fuck off - 2/13/2021
 	this->id = globalRectList.size();
 	globalRectList.push_back(this);
 }

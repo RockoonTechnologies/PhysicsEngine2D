@@ -37,7 +37,7 @@ public:
 	double diameter;
 	Vector2 position;
 	Rigidbody* rb;
-	CircleCollider(double diame);
+	CircleCollider(double diam);
 	~CircleCollider();
 
 	void Attach(Rigidbody* toAttach);
