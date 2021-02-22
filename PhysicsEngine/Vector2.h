@@ -3,6 +3,9 @@
 #include <iostream>
 #include <string>
 
+
+double Dot(Vector2 first, Vector2 second);
+
 class Vector2 {
 public:
 	double x;

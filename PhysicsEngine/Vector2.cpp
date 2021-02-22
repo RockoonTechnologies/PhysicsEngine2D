@@ -5,6 +5,10 @@
 
 using namespace std;
 
+double Dot(Vector2 first, Vector2 second) {
+	double final = (first.x * second.x) + (first.y * second.y);
+}
+
 Vector2::Vector2(double m_X, double m_Y) {
 	this->x = m_X;
 	this->y = m_Y;
