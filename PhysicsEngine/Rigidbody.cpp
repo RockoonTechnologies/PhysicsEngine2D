@@ -1,15 +1,26 @@
 #include "Rigidbody.h"
 #include "Vector2.h"
+#include <vector>
 
 using namespace std;
+
+vector<Rigidbody*> globalList;
+
+void RigidbodyUpdate(){
+    for (int x = 0; x < globalList.size(); x++) {
+        Rigidbody* obj = globalList[x];
+        obj->Update();
+    }
+}
 
 Rigidbody::Rigidbody(double mass, Vector2 pos) {
     this->mass = mass;
     this->position = pos;
 
+    globalList.push_back(this);
 }
 
-Rigidbody::Rigidbody() {}
+
 
 Rigidbody::~Rigidbody() {}
 
