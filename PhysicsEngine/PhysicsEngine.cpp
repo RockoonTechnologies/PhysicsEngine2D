@@ -1,53 +1,29 @@
-// PhysicsEngine.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
+#include "Simulation.h"
 #include <iostream>
-#include <string>
-#include "Rigidbody.h"
-#include "Collision.h"
-#include "Joints.h"
-
-#include <vector>
 
 
-using namespace std;
+using namespace Phys;
 
-Rigidbody body1(1, Vector2(0, 0));
-Rigidbody body2(1, Vector2(0, 5));
+
 
 int main()
 {
-    
 
-    
-    
+    Rigidbody body1(1, Vector2(0, 0));
+    Rigidbody body2(1, Vector2(0, 5));
 
-    for (int x=0; x < 10; x++) {
-        double xPos = (double)x * 10;
-        Rigidbody rb(1, Vector2(xPos, 100));
 
-        rbList.push_back(rb);
-    }
+    AddToSimulation(&body1);
+    AddToSimulation(&body2);
    
-    
-
-
-    //rb1.addForces(Vector2(10, 0));
-    for (int x = 0; x < 200; x++) {
-       
-        for (int y = 0; y < rbList.size(); y++) {
-            rbList[y].Update();
-        }
-
-        rbList.position.print();
-
-      
-
-       
-
-       
-       
+    for (int x = 0; x < 20; x++) {
+        Update(1);
+        body1.position.print();
         
     }
+        
+    
+  
 }
 
