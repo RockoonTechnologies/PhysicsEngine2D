@@ -15,14 +15,14 @@ namespace Phys {
 
 	std::vector<SpringJoint*> globalSpringList;
 	std::vector<FixedJoint*> globalFixedList;
+	std::vector<RotationJoint*> globalRotationList;
 
 	void Update(int steps = 1) {
 		for (int x = 0; x < steps; x++) {
 
 			RigidbodyUpdate(globalRigidbodyList);
-			JointUpdate(globalSpringList, globalFixedList);
+			JointUpdate(globalSpringList, globalFixedList, globalRotationList);
 			CollisionUpdate(globalRectList, globalCircleList);
-
 		}
 	}
 
@@ -42,6 +42,9 @@ namespace Phys {
 	}
 	void AddToSimulation(SpringJoint* sj) {
 		globalSpringList.push_back(sj);
+	}
+	void AddToSimulation(RotationJoint* rj) {
+		globalRotationList.push_back(rj);
 	}
 
 }

@@ -61,5 +61,5 @@ namespace Phys {
 
 	};
 
-	void JointUpdate(std::vector<SpringJoint*> globalSpringList, std::vector<FixedJoint*> globalFixedList);
+	void JointUpdate(std::vector<SpringJoint*> globalSpringList, std::vector<FixedJoint*> globalFixedList, std::vector<RotationJoint*> globalRotationList);
 }

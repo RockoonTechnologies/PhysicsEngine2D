@@ -71,15 +71,20 @@ namespace Phys {
 		this->rb1->position.x = (magnitude * cos(a + rads)) + this->offset.x;
 		this->rb1->position.y = (magnitude * sin(a + rads)) + this->offset.y;
 
+		this->angle++;
+
 	}
 
 
-	void JointUpdate(std::vector<SpringJoint*> globalSpringList, std::vector<FixedJoint*> globalFixedList) {
+	void JointUpdate(std::vector<SpringJoint*> globalSpringList, std::vector<FixedJoint*> globalFixedList, std::vector<RotationJoint*> globalRotationList) {
 		for (int x = 0; x < globalSpringList.size(); x++) {
 			globalSpringList[x]->Update();
 		}
 		for (int x = 0; x < globalFixedList.size(); x++) {
 			globalFixedList[x]->Update();
+		}
+		for (int x = 0; x < globalRotationList.size(); x++) {
+			globalRotationList[x]->Update();
 		}
 	}
 

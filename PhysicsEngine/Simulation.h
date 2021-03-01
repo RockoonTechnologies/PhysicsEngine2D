@@ -16,5 +16,6 @@ namespace Phys {
 	void AddToSimulation(CircleCollider* cc);
 	void AddToSimulation(FixedJoint* fj);
 	void AddToSimulation(SpringJoint* sj);
+	void AddToSimulation(RotationJoint* rj);
 
 }

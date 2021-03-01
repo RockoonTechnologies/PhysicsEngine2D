@@ -21,9 +21,6 @@ namespace Phys {
 
 	RectCollider::RectCollider(Vector2 dim) {
 		this->dimensions = dim;
-		// hi future theo, dont touch this either, ul break it all- i know u have tried, fuck off - 2/13/2021
-		
-		
 	}
 
 	RectCollider::~RectCollider() {}
