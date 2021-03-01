@@ -4,7 +4,7 @@
 #include <string>
 
 using namespace std;
-
+ 
 
 Vector2::Vector2(double m_X, double m_Y) {
 	this->x = m_X;
