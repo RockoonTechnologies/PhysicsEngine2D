@@ -144,6 +144,7 @@
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="Joints.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="Simulation.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
