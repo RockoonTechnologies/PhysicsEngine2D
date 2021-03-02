@@ -62,16 +62,19 @@ namespace Phys {
 
 	void RotationJoint::Update() {
 		
-		double magnitude = rb1->position.magnitude();
-		double a = atan(rb1->position.y / rb1->position.x);
+		if (this->angle > 360) {
+			this->angle = 0;
+		}
+		double magnitude = this->rb1->position.magnitude();
+		double a = atan(this->rb1->position.y / this->rb1->position.x);
 		double rads = Phys::Radians(this->angle);
 
-		this->offset = (this->rb2->position.x + this->offset.x, this->rb2->position.y + this->offset.y);
+		//this->offset = (this->rb2->position.x + this->offset.x, this->rb2->position.y + this->offset.y);
 
-		this->rb1->position.x = (magnitude * cos(a + rads)) + this->offset.x;
-		this->rb1->position.y = (magnitude * sin(a + rads)) + this->offset.y;
+		this->rb1->position.x = (magnitude * cos(a + rads)); //+this->offset.x;
+		this->rb1->position.y = (magnitude * sin(a + rads)); //+this->offset.y;
 
-		this->angle++;
+		
 
 	}
 

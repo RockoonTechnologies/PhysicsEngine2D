@@ -46,5 +46,4 @@ namespace Phys {
 	void AddToSimulation(RotationJoint* rj) {
 		globalRotationList.push_back(rj);
 	}
-
 }
