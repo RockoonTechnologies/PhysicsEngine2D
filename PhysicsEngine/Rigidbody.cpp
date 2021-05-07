@@ -25,10 +25,8 @@ namespace Phys {
 
 
 
-        this->forces.y += gravity;
-
         this->acceleration.x = this->forces.x / this->mass;
-        this->acceleration.y = this->forces.y / this->mass;
+        this->acceleration.y = (this->forces.y / this->mass) + this->gravity;
 
 
         //update position
